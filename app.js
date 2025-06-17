@@ -132,72 +132,79 @@ document.getElementById("searchbtn")
 
             // data fetch
             setTimeout(() => {
-                let getNews = async (input) => {
-                    console.log(input)
-            try{
-                let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=2025-05-17&sortBy=publishedAt&apiKey=864ef4174574452ab0474585254aaa70`;
-                let response = await fetch(apiUrl);
-                let data = await response.json();
-            
-                // Clear previous results
-                const showDataDiv = document.getElementById('showdata');
-                showDataDiv.innerHTML = '';
-            
-                
-                data.articles.forEach(article => {
-                
-                const card = document.createElement('div');
-                card.className = 'card';
-            
-               
-                card.style.width = '300px'; 
-                card.style.height = '400px'; 
-                card.style.border = '1px solid #ccc';
-                card.style.borderRadius = '8px';
-                card.style.overflow = 'hidden';
-                card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
-                card.style.display = 'flex';
-                card.style.flexDirection = 'column';
-                card.style.background = 'linear-gradient(135deg, #f8f7c3, #ace0e7)';
-            
-                
-                const img = document.createElement('img');
-                img.src = article.urlToImage ; 
-                img.alt = 'News Image';
-                img.style.width = '100%'; 
-                img.style.height = '150px'; 
-                img.style.objectFit = 'cover';
-            
-                const contentDiv = document.createElement('div');
-                contentDiv.style.padding = '10px';
-                contentDiv.innerHTML = `
-                    <h3 style="margin: 0 0 10px;">${article.title}</h3>
-                    <p style="font-size: 0.9em; color: #555;">${article.description}</p>
-                    <a href="${article.url}" target="_blank" style="color: #007BFF; text-decoration: none;">Read more</a>
-                `;
-            
-                card.appendChild(img);
-                card.appendChild(contentDiv);
-            
-                
-                document.getElementById('showdata').appendChild(card);
-                let showdata = () => {
-            let showdata = document.getElementById("showdata");
-             setTimeout(() => {
-                showdata.classList.add("showdata1");
-            } );         
-              
-        }
-        showdata()
-            })
-            }catch(error){
-                console.log(error)
+    let getNews = async (input) => {
+        console.log(input);
+        try {
+            // Use a valid past or current date
+            let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=2023-01-01&sortBy=publishedAt&apiKey=864ef4174574452ab0474585254aaa70`;
+            let response = await fetch(apiUrl);
+
+            // Check response status
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        };
-        
-        // Call the renamed function
-        getNews(userInput);
-            },3000)
+
+            let data = await response.json();
+
+            // Make sure articles exist
+            if (data.articles && data.articles.length > 0) {
+                const showDataDiv = document.getElementById('showdata');
+                showDataDiv.innerHTML = ''; // Clear previous results
+
+                data.articles.forEach(article => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+
+                    // Style the card
+                    card.style.width = '300px'; 
+                    card.style.height = '400px'; 
+                    card.style.border = '1px solid #ccc';
+                    card.style.borderRadius = '8px';
+                    card.style.overflow = 'hidden';
+                    card.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                    card.style.display = 'flex';
+                    card.style.flexDirection = 'column';
+                    card.style.background = 'linear-gradient(135deg, #f8f7c3, #ace0e7)';
+                    
+                    // Image with fallback if null
+                    const img = document.createElement('img');
+                    img.src = article.urlToImage || 'https://via.placeholder.com/300x150?text=No+Image';
+                    img.alt = 'News Image';
+                    img.style.width = '100%';
+                    img.style.height = '150px';
+                    img.style.objectFit = 'cover';
+
+                    // Content
+                    const contentDiv = document.createElement('div');
+                    contentDiv.style.padding = '10px';
+                    contentDiv.innerHTML = `
+                        <h3 style="margin: 0 0 10px;">${article.title}</h3>
+                        <p style="font-size: 0.9em; color: #555;">${article.description || 'No description available.'}</p>
+                        <a href="${article.url}" target="_blank" style="color: #007BFF; text-decoration: none;">Read more</a>
+                    `;
+
+                    card.appendChild(img);
+                    card.appendChild(contentDiv);
+                    document.getElementById('showdata').appendChild(card);
+                });
+                // Show the container with animation
+                let showdata = document.getElementById("showdata");
+                setTimeout(() => {
+                    showdata.classList.add("showdata1");
+                });
+            } else {
+                alert("No news articles found for this query.");
+            }
+        } catch (error) {
+            console.error("Error fetching news:", error);
+            alert("Failed to fetch news. Please try again later.");
+        }
+    };
+
+    // Fetch news with user input
+    const userInput = document.getElementById("search").value.trim();
+    getNews(userInput);
+}, 3000);
 }
 });
     
