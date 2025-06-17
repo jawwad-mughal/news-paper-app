@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <link rel="icon" type="" href="./icon/news.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+    <div class="main">
+
+        <!-- navbar section -->
+        <div class="navbar" id="nav">
+            <img id="logo" class="logo"  src="./icon/logo/original-6f1ff49d7b939c34239dd742e73a196d-removebg-preview.png" alt="logo">
+            <div class="userinput">
+                <input type="text" id="search" class="search" placeholder="Search">
+                <button id="searchbtn" class="searchbtn"><i id="icon"  class="fa-solid fa-magnifying-glass icon "></i></button>
+            </div>
+        </div>
+
+        <!-- history section -->
+         <div class="history " id="history">
+            <p class="history_para" id="history_para">History:</p>
+            <div class="history_container" id="history_container"></div>
+         </div>
+
+         <div class="loader " id="loader"></div>
+         
+         <!-- show data -->
+         <div id="showdata" class="showdata" >
+             
+        </div>
+
+
+    </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
