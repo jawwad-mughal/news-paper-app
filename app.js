@@ -130,30 +130,11 @@ document.getElementById("searchbtn")
                 loader.classList.remove("loader");
             },3000)
 
-    function getCurrentDatePKT() {
-    const now = new Date();
-    
-    const pktOffset = 5 * 60; 
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000); 
-    const pktTime = new Date(utc + (pktOffset * 60000)); 
-
-    
-    const options = {
-        day: 'numeric' 
-    };
-    
-    
-    const formatter = new Intl.DateTimeFormat('en-US', options);
-    return formatter.format(pktTime);
-}
-let date = getCurrentDatePKT()
-console.log(date)
-
             // data fetch
             setTimeout(() => {
                 let getNews = async (input) => {
             try{
-                let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=2025-06-${date}&sortBy=publishedAt&apiKey=d7c75f8ca3754211aeaebe77a950b7ab`;
+                let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=2025-06-18&sortBy=publishedAt&apiKey=d7c75f8ca3754211aeaebe77a950b7ab`;
                 let response = await fetch(apiUrl);
                 let data = await response.json();
             
