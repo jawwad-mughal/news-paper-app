@@ -121,7 +121,7 @@ document.getElementById("searchbtn")
 
             let loader = document.getElementById("loader");
             setTimeout(() => {
-                
+                loader.classList.add("loader");
                 loader.classList.add("loader1");
             },1000)
             setTimeout(() => {

@@ -286,4 +286,8 @@
     right: 800px;
     /* transition: right 0.2s ease-in-out; */
 }
+.showdata1{
+    transition: right 1s ease-in-out;
+    right: 0px;
+}
 }
