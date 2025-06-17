@@ -130,13 +130,32 @@ document.getElementById("searchbtn")
                 loader.classList.remove("loader");
             },3000)
 
-            
+    function getCurrentDatePKT() {
+    const now = new Date();
+    
+    const pktOffset = 5 * 60; 
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000); 
+    const pktTime = new Date(utc + (pktOffset * 60000)); 
+
+    
+    const options = {
+        year: 'numeric', 
+        month: 'numeric',
+        day: 'numeric' 
+    };
+    
+    
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    return formatter.format(pktTime);
+}
+let date = getCurrentDatePKT()
+console.log(date)
 
             // data fetch
             setTimeout(() => {
                 let getNews = async (input) => {
             try{
-                let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=2025-05-17&sortBy=publishedAt&apiKey=864ef4174574452ab0474585254aaa70`;
+                let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=${date}&sortBy=publishedAt&apiKey=864ef4174574452ab0474585254aaa70`;
                 let response = await fetch(apiUrl);
                 let data = await response.json();
             
@@ -237,8 +256,7 @@ let history_para_div = () => {
             setTimeout(() =>{
                 historypara.classList.add("history_para1")
             })
-        }  
-        console.log(scrollY)             
+        }             
     });  
 }
 history_para_div()
