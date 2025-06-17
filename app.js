@@ -139,7 +139,6 @@ document.getElementById("searchbtn")
 
     
     const options = {
-        
         day: 'numeric' 
     };
     
@@ -154,7 +153,7 @@ console.log(date)
             setTimeout(() => {
                 let getNews = async (input) => {
             try{
-                let apiUrl = `https://newsapi.org/v2/everything?q=${input}le&from=2025-06-${date}&sortBy=popularity&apiKey=864ef4174574452ab0474585254aaa70`;
+                let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=2025-06-${date}&sortBy=publishedAt&apiKey=d7c75f8ca3754211aeaebe77a950b7ab`;
                 let response = await fetch(apiUrl);
                 let data = await response.json();
             
