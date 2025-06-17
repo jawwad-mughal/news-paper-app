@@ -270,5 +270,20 @@
         left: 110px;
        
     }
-    
+    .showdata{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    padding-top: 10px;
+    min-height: 500px;
+    background-color: rgb(166, 152, 173);
+    /* margin-top: 5px; */
+    border-radius: 15px;
+    position: relative;
+    top: 0px;
+    right: 800px;
+    /* transition: right 0.2s ease-in-out; */
+}
 }
