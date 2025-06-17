@@ -154,7 +154,7 @@ console.log(date)
             setTimeout(() => {
                 let getNews = async (input) => {
             try{
-                let apiUrl = `https://newsapi.org/v2/everything?q=${input}le&from=2025-06-${date}&to=2025-06-16&sortBy=popularity&apiKey=864ef4174574452ab0474585254aaa70`;
+                let apiUrl = `https://newsapi.org/v2/everything?q=${input}le&from=2025-06-${date}&sortBy=popularity&apiKey=864ef4174574452ab0474585254aaa70`;
                 let response = await fetch(apiUrl);
                 let data = await response.json();
             
