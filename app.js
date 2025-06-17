@@ -136,7 +136,7 @@ document.getElementById("searchbtn")
             setTimeout(() => {
                 let getNews = async (input) => {
             try{
-                let apiUrl = `http://newsapi.org/v2/everything?q=${input}&from=2025-05-17&sortBy=publishedAt&apiKey=864ef4174574452ab0474585254aaa70`;
+                let apiUrl = `https://newsapi.org/v2/everything?q=${input}&from=2025-05-17&sortBy=publishedAt&apiKey=864ef4174574452ab0474585254aaa70`;
                 let response = await fetch(apiUrl);
                 let data = await response.json();
             
